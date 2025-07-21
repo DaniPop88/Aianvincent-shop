@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary | AianVincent Martia Shop</title>
+    <meta name="description" content="Review your order and complete your purchase at AianVincent Martia Shop. Your beauty and skincare essentials delivered with care.">
+    <link rel="icon" href="image/FAVICON.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #43297d;
+            --accent: #f9a826;
+            --secondary: #ffffff;
+            --bg: #f6f4fc;
+            --card-bg: #ffffff;
+            --text: #2c2c2c;
+            --heading: #43297d;
+            --shadow: 0 2px 14px rgba(67,41,125,0.07);
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', 'Montserrat', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        body {
+            min-height: 100vh;
+        }
+        header {
+            background: var(--primary);
+            padding: 0.5rem 0 1.3rem 0;
+            box-shadow: 0 2px 10px rgba(67,41,125,0.03);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 0 1rem;
+        }
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .branding img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+            background: var(--primary);
+            border-radius: 15px;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 2px 12px rgba(67,41,125,0.07);
+        }
+        .branding .company-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: 1px;
+        }
+        .summary-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 2.2rem 1.4rem 1.5rem 1.4rem;
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .summary-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            text-align: center;
+        }
+        .summary-details {
+            margin-bottom: 1.2rem;
+        }
+        .summary-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .summary-list li {
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 0.7em;
+            padding: 0.7em 1.1em;
+            color: var(--heading);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.04em;
+        }
+        .total-row {
+            font-weight: 700;
+            font-size: 1.13em;
+            color: var(--primary);
+            border-top: 1.5px solid #e8e8e8;
+            margin-top: 1.1em;
+            padding-top: 0.8em;
+        }
+        .order-form {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.1em;
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.32em;
+            color: var(--heading);
+            font-size: 1em;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.7em 1em;
+            border-radius: 8px;
+            border: 1.5px solid #d8d8d8;
+            font-size: 1em;
+            font-family: inherit;
+            background: #faf9ff;
+            color: var(--text);
+        }
+        .form-group textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        .checkout-btn {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 0.9em 2.2em;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.13em;
+            margin: 0 auto;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(249,168,38,0.07);
+        }
+        .checkout-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        .confirmation-message {
+            background: #f5f3ff;
+            border-left: 6px solid var(--accent);
+            padding: 1.5em 1.2em;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(67,41,125,0.03);
+            margin-top: 2.1em;
+            margin-bottom: 2.2em;
+            color: var(--heading);
+            font-size: 1.07em;
+            font-weight: 500;
+        }
+        .confirmation-message strong {
+            color: var(--accent);
+        }
+        .info-note {
+            margin-top: 1.7em;
+            font-size: 1em;
+            color: #6c6c8c;
+            background: #fafaed;
+            border-radius: 10px;
+            padding: 1em;
+            border-left: 6px solid var(--accent);
+        }
+        footer {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            font-size: 1em;
+            margin-top: 2rem;
+        }
+        .footer-links {
+            margin-bottom: 0.8em;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: underline;
+            margin: 0 1em;
+            font-weight: 700;
+            font-size: 1em;
+        }
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        .footer-contact {
+            margin-bottom: 1em;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        .footer-note {
+            color: #cdb2d6;
+            font-size: 0.97em;
+        }
+        @media (max-width: 700px) {
+            .container {
+                max-width: 100vw;
+                padding: 0 0.3rem;
+            }
+            .summary-card {
+                padding: 1.2rem 0.3rem 1rem 0.3rem;
+            }
+            .summary-title {
+                font-size: 1.1rem;
+            }
+            .branding .company-name {
+                font-size: 1.2rem;
+            }
+            .branding img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+        @media (max-width: 450px) {
+            .branding .company-name {
+                font-size: 1rem;
+            }
+            .summary-title {
+                font-size: 1rem;
+            }
+            .form-group label {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    <script>
+        // Demo cart, can be replaced with actual values if integrated
+        var demoCartItems = [
+            { name: "Luxe Glow Whitening Soap", price: 180, qty: 2 },
+            { name: "Skin Perfect Toner – Alcohol-Free", price: 230, qty: 1 },
+            { name: "Glass Skin Night Cream", price: 320, qty: 1 }
+        ];
+        function renderOrderSummary() {
+            var ul = document.getElementById('summary-list');
+            var total = 0;
+            ul.innerHTML = '';
+            demoCartItems.forEach(function(item){
+                var itemTotal = item.price * item.qty;
+                total += itemTotal;
+                var li = document.createElement('li');
+                li.innerHTML = `<span>${item.name} <small style="color:#888;font-weight:normal;">x${item.qty}</small></span> <span>₱${itemTotal.toLocaleString()}</span>`;
+                ul.appendChild(li);
+            });
+            var totalRow = document.createElement('li');
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `<span>Total</span> <span>₱${total.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span>`;
+            ul.appendChild(totalRow);
+        }
+        document.addEventListener('DOMContentLoaded', function(){
+            renderOrderSummary();
+            var orderForm = document.getElementById('order-form');
+            var confirmationSection = document.getElementById('confirmation-section');
+            var confirmationMsg = document.getElementById('confirmation-message');
+            orderForm.addEventListener('submit', function(e){
+                e.preventDefault();
+                orderForm.style.display = 'none';
+                confirmationSection.style.display = 'block';
+                window.scrollTo({top: confirmationSection.offsetTop-80, behavior: 'smooth'});
+            });
+            // Simulate customer confirmation and payment link logic (demo only)
+            var btnConfirm = document.getElementById('btn-customer-confirm');
+            var paymentLinkSection = document.getElementById('payment-link-section');
+            btnConfirm.addEventListener('click', function(){
+                confirmationMsg.style.display = 'none';
+                paymentLinkSection.style.display = 'block';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container branding">
+            <img src="image/LOGO.png" alt="AianVincent Martia Shop Logo" />
+            <span class="company-name">AIANVINCENT<br>MARTIA SHOP</span>
+        </div>
+    </header>
+    <main class="container">
+        <div class="summary-card">
+            <div class="summary-title">Order Review & Checkout</div>
+            <div class="summary-details">
+                <p>
+                    Please review your selected items and fill in the delivery and payment details below. Our team will verify your order and reach out to confirm availability, product colors, and any special requests.
+                </p>
+                <ul class="summary-list" id="summary-list">
+                    <!-- Rendered by script -->
+                </ul>
+            </div>
+            <form class="order-form" id="order-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input required type="text" id="name" name="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea required id="address" name="address" placeholder="Complete address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Mobile Number</label>
+                    <input required type="tel" id="contact" name="contact" placeholder="+63 xxx xxx xxxx">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address <small style="color:#aaa;">(optional)</small></label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Order Notes <small style="color:#aaa;">(optional)</small></label>
+                    <textarea id="notes" name="notes" placeholder="Any preferences, requests, or delivery instructions?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment">Preferred Payment Method</label>
+                    <select required id="payment" name="payment">
+                        <option value="">Select one</option>
+                        <option value="GCash">GCash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Cash on Delivery">Cash on Delivery</option>
+                    </select>
+                </div>
+                <button type="submit" class="checkout-btn">Submit Order</button>
+            </form>
+            <div id="confirmation-section" style="display:none;">
+                <div class="confirmation-message" id="confirmation-message">
+                    <strong>Thank you for your order!</strong><br>
+                    Your order has been received and is now being processed. One of our team members will contact you shortly to review the details with you. <br><br>
+                    Please confirm product selections, colors, and availability once contacted. Only after you have verified these details will we send you a payment link according to your chosen method.<br><br>
+                    <button id="btn-customer-confirm" class="checkout-btn" style="margin-top:1em;">Confirm My Order Details</button>
+                </div>
+                <div class="info-note" id="payment-link-section" style="display:none;">
+                    <strong>Payment Instructions:</strong><br>
+                    Once you receive your payment link, kindly complete the payment within <strong>24 hours</strong> to secure your order. Orders not paid within this timeframe will be automatically cancelled to ensure a smooth experience for all customers.<br><br>
+                    If you have any questions or need further assistance, please reach out to our team at <a href="mailto:contact@aianvincentmart.com">contact@aianvincentmart.com</a> or call <a href="tel:+639367854320">+63 936 785 4320</a>.<br><br>
+                    We appreciate your trust and look forward to serving you!
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="refund-policy.html">Refund Policy</a>
+        </div>
+        <div class="footer-contact">
+            AIANVINCENT MARTIA SHOP<br>
+            #89 Luna Street, Barangay San Agustin, City of San Fernando, Pampanga<br>
+            Phone: +63 936 785 4320 | Email: contact@aianvincentmart.com
+        </div>
+        <div class="footer-note">
+            Registered under DTI Philippines • BIR VAT • FDA-compliant<br>
+            All products are genuine, labelled, and safe. Local permits issued by City Government of San Fernando.
+        </div>
+        <div style="margin-top:1em;">&copy; 2025 AianVincent Martia Shop. All rights reserved.</div>
+    </footer>
+</body>
+</html>
